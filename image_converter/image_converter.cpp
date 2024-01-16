@@ -28,7 +28,7 @@ void usage(std::string cmd_name) {
     std::cout << "-n             : Normalize pulse pitch. Get statistic data of pulse-to-pulse distance \n"
                  "                 distribution in a track and align bit position with standard bit cell pitch.\n"
                  "                 This will make the disk image data easy to read." << std::endl;
-    std::cout << "-vfo vfo_type  : Select type of VFO (" VFO_TYPE_DESC_STR "). Effective only for D77." << std::endl;
+    std::cout << "-vfo vfo_type  : Select type of VFO (" VFO_TYPE_DESC_STR "). Effective only for D77 and RDD." << std::endl;
     std::cout << "-gain low high : VFO gain setting. Effective only for D77.  e.g. -gain 1.0 2.0" << std::endl;
     std::cout << "-v             : Verbose mode." << std::endl;
 	std::cout << "-raw           : Export RAW mode.  Effective only for FDX." << std::endl;
@@ -559,7 +559,7 @@ int main(int argc, char* argv[]) {
     }
 
     out_image->set_track_data_all(chimera_image);
-    if(output_ext == "d77") {
+    if(output_ext == "d77" || output_ext == "rdd") {
         // only for D77 output
         out_image->set_vfo_type(vfo_type);   
         if(verbose) {
